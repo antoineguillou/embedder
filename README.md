@@ -1,8 +1,10 @@
-# embedder
+# Embedder
+
+Embedder is a lightweight javascript tool making it simple to embed responsive videos in a webpage. Right now, Embedder works with youtube, vimeo, twitch and dailymotion but more streaming services will be added soon.
 
 ### Installation
 
-First include embedder's styles and javascript files in your page:
+First include Embedder's styles and javascript files in your page:
 
 ```html
 <link rel="stylesheet" href="path/to/embedder.min.css">
