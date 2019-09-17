@@ -1,0 +1,49 @@
+node_modules/
+
+### OS X ###
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+
+### WINDOWS ###
+ehthumbs.db
+Thumbs.db
+*.com
+*.dll
+*.exe
+*.o
+*.so
+
+
+### IDE ###
+*.sublime-project
+*.sublime-workspace
+*.esproj
+codekit-config.json
+
+
+### WORK ###
+*.log
+sitemap.xml
+sitemap.xml.gz
+.htpassword
+.htpasswd
+.sass-cache/
+*.psd
+!sprite.psd
+*.tif
+*.tiff
+.svn
+*.svn-base
+~*
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip

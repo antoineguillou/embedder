@@ -1,0 +1,17 @@
+body{
+  align-items: center;
+  background-color: #ccc;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
+}
+[data-embedder]{
+  margin: 10px 0;
+}

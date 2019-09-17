@@ -1,0 +1,30 @@
+[data-embedder]{
+  background-color: #000;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  position: relative;
+  width: auto;
+
+  img{
+    display: block;
+    left: 50%;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  iframe{
+    background-color: #000;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>embedder demo</title>
+    <link rel="stylesheet" href="dist/css/embedder.css">
+    <link rel="stylesheet" href="dist/css/demo.css">
+  </head>
+  <body>
+    <div class="container">
+      <div data-embedder data-youtube="hTGJfRPLe08">
+        <img src="https://via.placeholder.com/1920x1080/0000FF/FFFFFF?text=Youtube+%2816%3A9%29" alt="">
+      </div>
+      <div data-embedder data-ratio="4:3" data-vimeo="108071233" data-autoplay>
+        <img src="https://via.placeholder.com/1440x1080/0000FF/FFFFFF?text=Vimeo+%284%3A3%29" alt="">
+      </div>
+      <div data-embedder data-twitch="twitchplayspokemon">
+        <img src="https://via.placeholder.com/1920x1080/0000FF/FFFFFF?text=Twitch+%2816%3A9%29" alt="">
+      </div>
+      <div id="video">
+        <img src="https://via.placeholder.com/1920x1080/0000FF/FFFFFF?text=Dailymotion+%2816%3A9%29" alt="">
+      </div>
+    </div>
+    <script src="dist/js/embedder.js"></script>
+    <script>
+      (function(){
+        var wrapper = document.getElementById('video');
+
+        var vidEmbed = new embedder(wrapper, {
+          autoplay: true,
+          id: 'x7c1hw5',
+          service: 'dailymotion'
+        });
+      })();
+    </script>
+  </body>
+</html>
