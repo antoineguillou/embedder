@@ -11,7 +11,7 @@ First include embedder's styles and javascript files in your page:
 
 ### Usage
 
-Then the easiest way to include a video is using the `data-embedder` attribute and the video Id.
+The easiest way to include a video is using the `data-embedder` attribute and the video Id.
 
 ##### Youtube
 
@@ -62,6 +62,15 @@ Options can be set using data attributes :
 <div data-embedder data-youtube="hTGJfRPLe08" data-ratio="4:3"></div>
 ```
 
+You can also add a thumbnail image inside your element :
+
+```html
+<div data-embedder data-youtube="hTGJfRPLe08" data-autoplay>
+  <img src="https://via.placeholder.com/960x540/" srcset="https://via.placeholder.com/1920x1080/ 2x" alt="">
+</div>
+```
+
+
 ### options
 
 <table>
@@ -80,5 +89,4 @@ Options can be set using data attributes :
   <tr>
     <td>service</td><td>string</td><td>youtube</td><td>The video streaming site.</td>
   </tr>
-
 </table>
