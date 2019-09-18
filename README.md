@@ -4,7 +4,7 @@ Embedder is a lightweight javascript tool making it simple to embed responsive v
 
 Here's a [demo](https://antoineguillou.github.io/embedder/) where you can see it in action.
 
-### Installation
+## Installation
 
 First include Embedder's styles and javascript files in your page:
 
@@ -13,17 +13,17 @@ First include Embedder's styles and javascript files in your page:
 <script src="path/to/embedder.min.js"></script>
 ```
 
-### Usage
+## Usage
 
 The easiest way to include a video is using the `data-embedder` attribute and the video Id.
 
-##### Youtube
+### Youtube
 
 ```html
 <div data-embedder data-youtube="hTGJfRPLe08"></div>
 ```
 
-##### Vimeo
+### Vimeo
 
 ```html
 <div data-embedder data-vimeo="108071233"></div>
@@ -35,7 +35,7 @@ The easiest way to include a video is using the `data-embedder` attribute and th
 <div data-embedder data-twitch="twitchplayspokemon"></div>
 ```
 
-##### Dailymotion
+### Dailymotion
 
 ```html
 <div data-embedder data-dailymotion="x7c1hw5"></div>
@@ -75,7 +75,7 @@ You can also add a thumbnail image inside your element :
 ```
 
 
-### options
+## options
 
 <table>
   <tr>
@@ -94,3 +94,11 @@ You can also add a thumbnail image inside your element :
     <td>service</td><td>string</td><td>null</td><td>The video streaming site.</td>
   </tr>
 </table>
+
+## Built With
+
+* [Gulp](https://gulpjs.com/) 
+
+## Authors
+
+* **Antoine Guillou** - *Initial work* - [Front-end developer](https://antoineguillou.fr)
