@@ -7,7 +7,7 @@
       cover: null, // cover image
       id: 'ayf1sYiNLhQ', // video ID
       ratio: '16:9', // any valid video ratio
-      service: null // youtube, vimeo, dailymotion
+      service: null // video streaming site
     };
     if(!options){ options = {} }
 
@@ -22,7 +22,6 @@
   }
   embedder.prototype = {
     _init: function(){
-      var self = this;
       if(!this.selector.hasAttribute('data-embedder'))
         this.selector.setAttribute('data-embedder', '');
 
@@ -37,6 +36,7 @@
       var idxService = 0;
       if (this.options.service !== null) {
         this.iframe = this['_create'+ this.options.service[0].toUpperCase() + this.options.service.slice(1)+'Iframe'](this.options.id);
+        this._addClickEvent();
       } else {
         for(;idxService < lenService; idxService++) {
           var currentDataService = 'data-'+this.servicesSupported[idxService];
@@ -44,11 +44,17 @@
             this.options.id = this.selector.getAttribute(currentDataService);
             this.options.service = this.servicesSupported[idxService];
             this.iframe = this['_create'+ this.servicesSupported[idxService][0].toUpperCase() + this.servicesSupported[idxService].slice(1)+'Iframe'](this.options.id);
+            this._addClickEvent();
             break;
           }
         }
+        if(this.options.service == null){
+          this._log('Please provide a valide video ID & service');
+        }
       }
-
+    },
+    _addClickEvent: function(){
+      var self = this;
       this.selector.addEventListener('click', function(e){
         self.selector.appendChild(self.iframe);
       });
