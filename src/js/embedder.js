@@ -1,12 +1,13 @@
 (function (document, window) {
   var embedder = function(selector, options){
+    this.servicesSupported = ['youtube','vimeo','dailymotion','twitch'];
     this.selector = selector;
     this.options = {
       autoplay: false, // bool
       cover: null, // cover image
       id: 'ayf1sYiNLhQ', // video ID
       ratio: '16:9', // any valid video ratio
-      service: 'youtube' // youtube, vimeo, dailymotion
+      service: null // youtube, vimeo, dailymotion
     };
     if(!options){ options = {} }
 
@@ -32,37 +33,22 @@
       if(this.selector.hasAttribute('data-autoplay'))
         this.options.autoplay = true;
 
-      if(this.selector.hasAttribute('data-youtube')){
-        this.options.service = 'youtube';
-        this.options.id = this.selector.getAttribute('data-youtube');
-      } else if(this.selector.hasAttribute('data-vimeo')){
-        this.options.service = 'vimeo';
-        this.options.id = this.selector.getAttribute('data-vimeo');
-      } else if(this.selector.hasAttribute('data-dailymotion')){
-        this.options.service = 'dailymotion';
-        this.options.id = this.selector.getAttribute('data-dailymotion');
-      } else if(this.selector.hasAttribute('data-twitch')){
-        this.options.service = 'twitch';
-        this.options.id = this.selector.getAttribute('data-twitch');
+      var lenService = this.servicesSupported.length;
+      var idxService = 0;
+      if (this.options.service !== null) {
+        this.iframe = this['_create'+ this.options.service[0].toUpperCase() + this.options.service.slice(1)+'Iframe'](this.options.id);
+      } else {
+        for(;idxService < lenService; idxService++) {
+          var currentDataService = 'data-'+this.servicesSupported[idxService];
+          if(this.selector.hasAttribute(currentDataService)) {
+            this.options.id = this.selector.getAttribute(currentDataService);
+            this.options.service = this.servicesSupported[idxService];
+            this.iframe = this['_create'+ this.servicesSupported[idxService][0].toUpperCase() + this.servicesSupported[idxService].slice(1)+'Iframe'](this.options.id);
+            break;
+          }
+        }
       }
 
-      switch(this.options.service){
-        case "youtube" :
-          this.iframe = this._createYoutubeIframe(this.options.id);
-          break;
-        case "vimeo" :
-          this.iframe = this._createVimeoIframe(this.options.id);
-          break;
-        case "dailymotion" :
-          this.iframe = this._createDailymotionIframe(this.options.id);
-          break;
-        case "twitch" :
-          this.iframe = this._createTwitchIframe(this.options.id);
-          break;
-        default :
-          this.iframe = this._createYoutubeIframe(this.options.id);
-          this.covers = this._getYoutubeCovers(this.options.id);
-      }
       this.selector.addEventListener('click', function(e){
         self.selector.appendChild(self.iframe);
       });
@@ -121,7 +107,7 @@
     }
   }
   embedder.init = function(el){
-    var embed = new embedder(el);
+    embed = new embedder(el);
   }
   embedder.domInspect = function() {
       var elements = document.querySelectorAll('[data-embedder]');
