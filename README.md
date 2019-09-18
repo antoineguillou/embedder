@@ -91,6 +91,6 @@ You can also add a thumbnail image inside your element :
     <td>ratio</td><td>string</td><td>16:9</td><td>The video's aspect ratio.</td>
   </tr>
   <tr>
-    <td>service</td><td>string</td><td>youtube</td><td>The video streaming site.</td>
+    <td>service</td><td>string</td><td>null</td><td>The video streaming site.</td>
   </tr>
 </table>
