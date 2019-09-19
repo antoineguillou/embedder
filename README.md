@@ -39,11 +39,13 @@ The easiest way to include a video is using the `data-embedder` attribute and th
 <div data-embedder data-dailymotion="x7c1hw5"></div>
 ```
 
-It's also possible to use embedder on any element using javascript :
+It's also possible to use embedder on any element using javascript
 
 ```javascript
 new embedder(element, options);
 ```
+
+Here's an example :
 
 ```html
 <div id="video"></div>
@@ -58,7 +60,7 @@ new embedder(element, options);
 </script>
 ```
 
-## options
+## Options
 
 <table>
   <tr>
@@ -78,7 +80,8 @@ new embedder(element, options);
   </tr>
 </table>
 
-Options can be set using data attributes :
+
+Options can also be set using data attributes :
 
 ### Autoplay
 ```html
@@ -89,9 +92,16 @@ Options can be set using data attributes :
 ```html
 <div data-embedder data-youtube="hTGJfRPLe08" data-ratio="4:3"></div>
 ```
-(any valid aspect ratio works, the video proportions are set automatically)
+Any valid aspect ratio works, the video proportions are set automatically.
+* 16:9 (default)
+* 4:3
+* 2.35:1
+* 2:1
+* 1.85:1
+* 1:1
+* etc
 
-### Thumbnail
+## Thumbnail
 ```html
 <div data-embedder data-youtube="hTGJfRPLe08" data-autoplay>
   <img src="https://via.placeholder.com/960x540/" srcset="https://via.placeholder.com/1920x1080/ 2x" alt="">
@@ -101,7 +111,7 @@ You can add any picture or img tag inside your element to be used as thumbnail
 
 ## Built With
 
-* [Gulp](https://gulpjs.com/) 
+* [Gulp](https://gulpjs.com/) The streaming build system
 
 ## Authors
 
