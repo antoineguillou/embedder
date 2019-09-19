@@ -4,6 +4,8 @@ Embedder is a lightweight javascript tool making it simple to embed responsive v
 
 Here's a [demo](https://antoineguillou.github.io/embedder/) where you can see it in action.
 
+![how Embedder works](https://i.imgur.com/Wj9SMKX.jpg)
+
 ## Installation
 
 First include Embedder's styles and javascript files in your page:
