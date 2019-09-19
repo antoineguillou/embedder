@@ -31,7 +31,7 @@ The easiest way to include a video is using the `data-embedder` attribute and th
 <div data-embedder data-vimeo="108071233"></div>
 ```
 
-##### Twitch
+### Twitch
 
 ```html
 <div data-embedder data-twitch="twitchplayspokemon"></div>
