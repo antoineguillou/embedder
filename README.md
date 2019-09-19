@@ -20,30 +20,30 @@ First include Embedder's styles and javascript files in your page:
 The easiest way to include a video is using the `data-embedder` attribute and the video Id.
 
 ### Youtube
-
 ```html
 <div data-embedder data-youtube="hTGJfRPLe08"></div>
 ```
 
 ### Vimeo
-
 ```html
 <div data-embedder data-vimeo="108071233"></div>
 ```
 
 ### Twitch
-
 ```html
 <div data-embedder data-twitch="twitchplayspokemon"></div>
 ```
 
 ### Dailymotion
-
 ```html
 <div data-embedder data-dailymotion="x7c1hw5"></div>
 ```
 
 It's also possible to use embedder on any element using javascript :
+
+```javascript
+new embedder(element, options);
+```
 
 ```html
 <div id="video"></div>
@@ -57,25 +57,6 @@ It's also possible to use embedder on any element using javascript :
   });
 </script>
 ```
-
-Options can be set using data attributes :
-
-```html
-<div data-embedder data-youtube="hTGJfRPLe08" data-autoplay></div>
-```
-
-```html
-<div data-embedder data-youtube="hTGJfRPLe08" data-ratio="4:3"></div>
-```
-
-You can also add a thumbnail image inside your element :
-
-```html
-<div data-embedder data-youtube="hTGJfRPLe08" data-autoplay>
-  <img src="https://via.placeholder.com/960x540/" srcset="https://via.placeholder.com/1920x1080/ 2x" alt="">
-</div>
-```
-
 
 ## options
 
@@ -96,6 +77,27 @@ You can also add a thumbnail image inside your element :
     <td>service</td><td>string</td><td>null</td><td>The video streaming site.</td>
   </tr>
 </table>
+
+Options can be set using data attributes :
+
+### Autoplay
+```html
+<div data-embedder data-youtube="hTGJfRPLe08" data-autoplay></div>
+```
+
+### Ratio
+```html
+<div data-embedder data-youtube="hTGJfRPLe08" data-ratio="4:3"></div>
+```
+(any valid aspect ratio works, the video proportions are set automatically)
+
+### Thumbnail
+```html
+<div data-embedder data-youtube="hTGJfRPLe08" data-autoplay>
+  <img src="https://via.placeholder.com/960x540/" srcset="https://via.placeholder.com/1920x1080/ 2x" alt="">
+</div>
+```
+You can add any picture or img tag inside your element to be used as thumbnail
 
 ## Built With
 
