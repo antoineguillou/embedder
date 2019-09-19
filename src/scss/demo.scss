@@ -8,9 +8,13 @@ body{
   padding: 0;
 }
 .container{
-  margin: 0 auto;
+  margin: 0 10px;
   max-width: 600px;
   width: 100%;
+
+  @media (min-width: 620px) {
+    margin: 0 auto;
+  }
 }
 [data-embedder]{
   margin: 10px 0;
