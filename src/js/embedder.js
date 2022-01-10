@@ -101,9 +101,12 @@
     },
     _createTwitchIframe: function(id){
       var iframe = this._createBaseIframe();
-      var hostname = window.location.hostname;
-      console.log(window.location);
-      var src = "https://player.twitch.tv/?channel="+id+"&parent="+hostname;
+
+      var src = "https://player.twitch.tv/?channel="+id;
+      if(window.location.hostname){
+        var hostname = window.location.hostname;
+        src += "&parent="+hostname;
+      }
       if(this.options.autoplay)
         src += "&autoPlay=1";
       iframe.src = src;
