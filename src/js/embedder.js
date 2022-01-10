@@ -101,9 +101,11 @@
     },
     _createTwitchIframe: function(id){
       var iframe = this._createBaseIframe();
-      var src = "https://player.twitch.tv/?channel="+id;
+      var hostname = window.location.hostname;
+      console.log(window.location);
+      var src = "https://player.twitch.tv/?channel="+id+"&parent="+hostname;
       if(this.options.autoplay)
-        src += "?autoPlay=1";
+        src += "&autoPlay=1";
       iframe.src = src;
       return iframe;
     },

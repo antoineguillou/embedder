@@ -1,6 +1,6 @@
 {
   "name": "embedder",
-  "version": "0.1",
+  "version": "0.0.1",
   "description": "",
   "main": "gulpfile.js",
   "private": true,
