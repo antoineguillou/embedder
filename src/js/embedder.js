@@ -1,13 +1,26 @@
 (function (document, window) {
   var embedder = function(selector, options){
-    this.servicesSupported = ['youtube','vimeo','dailymotion','twitch'];
+    this.servicesSupported = [{
+      name: 'youtube',
+      filter: /(?:https?:\/\/)?(?:(?:www\.)?(?:youtube(?:-nocookie)?|youtube.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i
+    },{
+      name: 'vimeo',
+      filter: /(?:https?:\/\/)?(?:(?:www\.)?(?:vimeo(?:-nocookie)?|vimeo.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i
+    },{
+      name: 'dailymotion',
+      filter: /(?:https?:\/\/)?(?:(?:www\.)?(?:dailymotion(?:-nocookie)?|dailymotion.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i
+    },{
+      name: 'twitch',
+      filter: /(?:https?:\/\/)?(?:(?:www\.)?(?:twitch(?:-nocookie)?|twitch.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i
+    }];
     this.selector = selector;
     this.options = {
       autoplay: false, // bool
       cover: null, // cover image
-      id: 'ayf1sYiNLhQ', // video ID
+      id: null, // video ID
       ratio: '16:9', // any valid video ratio
-      service: null // video streaming site
+      service: null, // video streaming site
+      url: null // video url
     };
     if(!options){ options = {} }
 
@@ -32,26 +45,36 @@
       if(this.selector.hasAttribute('data-autoplay'))
         this.options.autoplay = true;
 
-      var lenService = this.servicesSupported.length;
-      var idxService = 0;
-      if (this.options.service !== null) {
-        this.iframe = this['_create'+ this.options.service[0].toUpperCase() + this.options.service.slice(1)+'Iframe'](this.options.id);
-        this._addClickEvent();
-      } else {
+      if (this.options.service == null || this.options.id == null){
+        var lenService = this.servicesSupported.length;
+        var idxService = 0;
         for(;idxService < lenService; idxService++) {
-          var currentDataService = 'data-'+this.servicesSupported[idxService];
-          if(this.selector.hasAttribute(currentDataService)) {
+          var currentDataService = 'data-'+this.servicesSupported[idxService].name;
+          if(this.selector.hasAttribute(currentDataService)){
             this.options.id = this.selector.getAttribute(currentDataService);
-            this.options.service = this.servicesSupported[idxService];
-            this.iframe = this['_create'+ this.servicesSupported[idxService][0].toUpperCase() + this.servicesSupported[idxService].slice(1)+'Iframe'](this.options.id);
-            this._addClickEvent();
+            this.options.service = this.servicesSupported[idxService].name;
             break;
           }
         }
-        if(this.options.service == null){
-          this._log('Please provide a valide video ID & service');
+      }
+      if (this.options.url == null){
+        if(this.selector.hasAttribute('data-url')){
+          this.options.url = this.selector.getAttribute('data-url');
         }
       }
+
+      if ((this.options.service == null || this.options.id == null) && this.options.url !== null){
+        var self = this;
+        this._parseUrl(function(){
+          self._buildIframe(self);
+        });
+      } else if(this.options.service !== null && this.options.id !== null){
+        this._buildIframe(self);
+      }
+
+      // if(this.options.service == null){
+      //   this._log('Please provide a valide video ID & service');
+      // }
     },
     _addClickEvent: function(){
       var self = this;
@@ -65,6 +88,22 @@
       exp.test(ratio);
       var padding = (RegExp.$2 / RegExp.$1 * 100);
       this.selector.style.paddingBottom = padding + '%';
+    },
+    _parseUrl: function(callback){
+      var output;
+      var lenService = this.servicesSupported.length;
+      var idxService = 0;
+
+      for(;idxService < lenService; idxService++) {
+        var test = this.servicesSupported[idxService].filter.exec(this.options.url);
+        if(test){
+          //console.log(test);
+          this.options.service = this.servicesSupported[idxService].name;
+          this.options.id = test[1];
+          break;
+        }
+      }
+      callback();
     },
     _createBaseIframe: function(){
       var iframe = document.createElement('iframe');
@@ -111,6 +150,12 @@
         src += "&autoPlay=1";
       iframe.src = src;
       return iframe;
+    },
+    _buildIframe: function(){
+      //console.log(this.options);
+      this.iframe = this['_create'+ this.options.service[0].toUpperCase() + this.options.service.slice(1)+'Iframe'](this.options.id);
+      console.log(this.iframe);
+      this._addClickEvent();
     },
     _log: function(){
       if (window.console && console.log)
