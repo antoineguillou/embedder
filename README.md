@@ -21,22 +21,28 @@ The easiest way to include a video is using the `data-embedder` attribute and th
 
 ### Youtube
 ```html
-<div data-embedder data-youtube="hTGJfRPLe08"></div>
+<div data-embedder data-youtube="NzmF4lby-GM"></div>
 ```
 
 ### Vimeo
 ```html
-<div data-embedder data-vimeo="108071233"></div>
-```
-
-### Twitch
-```html
-<div data-embedder data-twitch="twitchplayspokemon"></div>
+<div data-embedder data-vimeo="192854788"></div>
 ```
 
 ### Dailymotion
 ```html
-<div data-embedder data-dailymotion="x7c1hw5"></div>
+<div data-embedder data-dailymotion="x3jfp9v"></div>
+```
+
+### Twitch
+```html
+<div data-embedder data-twitch="1051246608"></div>
+```
+
+You can also paste an URL and embedder will try to determine the service & ID.
+
+```html
+<div data-embedder data-url="https://www.youtube.com/watch?v=G-n9p28Yh8w"></div>
 ```
 
 It's also possible to use embedder on any element using javascript
@@ -77,6 +83,9 @@ Here's an example :
   </tr>
   <tr>
     <td>service</td><td>string</td><td>null</td><td>The video streaming site.</td>
+  </tr>
+  <tr>
+    <td>url</td><td>string</td><td>null</td><td>Some video URL.</td>
   </tr>
 </table>
 

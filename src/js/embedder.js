@@ -5,13 +5,13 @@
       filter: /(?:https?:\/\/)?(?:(?:www\.)?(?:youtube(?:-nocookie)?|youtube.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i
     },{
       name: 'vimeo',
-      filter: /(?:https?:\/\/)?(?:(?:www\.)?(?:vimeo(?:-nocookie)?|vimeo.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i
+      filter: /(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|)(\d+)/i
     },{
       name: 'dailymotion',
-      filter: /(?:https?:\/\/)?(?:(?:www\.)?(?:dailymotion(?:-nocookie)?|dailymotion.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i
+      filter: /(?:https?:\/\/)?(?:www\.)?dai\.?ly(?:motion)?(?:\.com)?\/?.*(?:video|embed)?(?:.*v=|v\/|\/)([a-z0-9]+)/i
     },{
       name: 'twitch',
-      filter: /(?:https?:\/\/)?(?:(?:www\.)?(?:twitch(?:-nocookie)?|twitch.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i
+      filter: /(?:https?:\/\/)?(?:www\.)?(?:twitch(?:-nocookie)?|twitch.googleapis)\.(?:com|tv).*(?:v\/|v=|vi=|vi\/|videos\/)([0-9]+)/i
     }];
     this.selector = selector;
     this.options = {
@@ -69,12 +69,17 @@
           self._buildIframe(self);
         });
       } else if(this.options.service !== null && this.options.id !== null){
-        this._buildIframe(self);
+        this._buildIframe();
+      } else {
+        if(this.options.service == null && this.options.id == null && this.options.url == null){
+          this._log('Please provide a valid video URL or service + ID');
+        } else if(this.options.service == null && this.options.id !== null){
+          this._log('Please provide the video service for ID '+this.options.id);
+        }  else if(this.options.service !== null && this.options.id == null){
+          this._log('Please provide the '+this.options.service+' video ID');
+        }
       }
 
-      // if(this.options.service == null){
-      //   this._log('Please provide a valide video ID & service');
-      // }
     },
     _addClickEvent: function(){
       var self = this;
@@ -141,7 +146,7 @@
     _createTwitchIframe: function(id){
       var iframe = this._createBaseIframe();
 
-      var src = "https://player.twitch.tv/?channel="+id;
+      var src = "https://player.twitch.tv/?video="+id;
       if(window.location.hostname){
         var hostname = window.location.hostname;
         src += "&parent="+hostname;
@@ -152,9 +157,8 @@
       return iframe;
     },
     _buildIframe: function(){
-      //console.log(this.options);
       this.iframe = this['_create'+ this.options.service[0].toUpperCase() + this.options.service.slice(1)+'Iframe'](this.options.id);
-      console.log(this.iframe);
+      //console.log(this.iframe);
       this._addClickEvent();
     },
     _log: function(){
