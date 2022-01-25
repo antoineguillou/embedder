@@ -11,7 +11,7 @@
       filter: /(?:https?:\/\/)?(?:www\.)?dai\.?ly(?:motion)?(?:\.com)?\/?.*(?:video|embed)?(?:.*v=|v\/|\/)([a-z0-9]+)/i
     },{
       name: 'twitch',
-      filter: /(?:https?:\/\/)?(?:www\.)?(?:twitch(?:-nocookie)?|twitch.googleapis)\.(?:com|tv).*(?:v\/|v=|vi=|vi\/|videos\/)([0-9]+)/i
+      filter: /(?:https?:\/\/)?(?:www\.)?twitch\.(?:com|tv).*(?:v\/|v=|vi=|vi\/|videos\/)([0-9]+)/i
     }];
     this.selector = selector;
     this.options = {
