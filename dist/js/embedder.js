@@ -85,6 +85,7 @@
       var self = this;
       this.selector.addEventListener('click', function(e){
         self.selector.appendChild(self.iframe);
+        self.selector.classList.add('embedder-initialized');
       });
     },
     _setRatio: function(){
