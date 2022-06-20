@@ -99,6 +99,7 @@
       var output;
       var lenService = this.servicesSupported.length;
       var idxService = 0;
+      var isValidUrl = false;
 
       for(;idxService < lenService; idxService++) {
         var test = this.servicesSupported[idxService].filter.exec(this.options.url);
@@ -106,10 +107,15 @@
           //console.log(test);
           this.options.service = this.servicesSupported[idxService].name;
           this.options.id = test[1];
+          isValidUrl = true;
           break;
         }
       }
-      callback();
+      if(isValidUrl){
+        callback();
+      } else {
+        this._log('Please provide a valid video URL or service + ID');
+      }
     },
     _createBaseIframe: function(){
       var iframe = document.createElement('iframe');
