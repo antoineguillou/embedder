@@ -129,7 +129,7 @@
       if(this.options.autoplay)
         src += "?autoplay=1";
       iframe.src = src;
-      iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+      iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen");
       return iframe;
     },
     _createVimeoIframe: function(id){
@@ -147,7 +147,7 @@
       if(this.options.autoplay)
         src += "?autoPlay=1";
       iframe.src = src;
-      iframe.setAttribute("allow", "autoplay");
+      iframe.setAttribute("allow", "autoplay; fullscreen");
       return iframe;
     },
     _createTwitchIframe: function(id){
@@ -161,6 +161,7 @@
       if(this.options.autoplay)
         src += "&autoPlay=1";
       iframe.src = src;
+      iframe.setAttribute("allow", "autoplay; fullscreen");
       return iframe;
     },
     _buildIframe: function(){
